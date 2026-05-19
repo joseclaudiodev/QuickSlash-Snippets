@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="config_title"></title>
+  <link rel="stylesheet" href="config.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">
+      <h1>QuickSlash <span>Snippets</span></h1>
+    </div>
+
+    <div class="header-actions">
+      <label class="switch-container">
+        <span data-i18n="ext_enabled"></span>
+        <input type="checkbox" id="global-enabled-toggle">
+        <span class="slider"></span>
+      </label>
+
+      <span class="hotkey-badge" id="display-hotkey">Alt + Q</span>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 data-i18n="sidebar_cat_title"></h2>
+        <button id="btn-add-category" class="btn-primary" data-i18n-title="btn_add_cat_title">+</button>
+      </div>
+      
+      <nav id="category-list" class="category-nav">
+        </nav>
+
+      <div class="sidebar-footer">
+        <button id="btn-import-json" class="btn-outline" data-i18n="btn_import"></button>
+        <button id="btn-export-json" class="btn-outline" data-i18n="btn_export"></button>
+        <input type="file" id="import-file-input" style="display: none;" accept=".json">
+      </div>
+    </aside>
+
+    <section class="content">
+      <div id="no-category-selected" class="empty-state">
+        <p data-i18n="empty_state_text"></p>
+      </div>
+
+      <div id="active-category-view" class="hidden">
+        <header class="content-header">
+          <div class="category-info">
+            <h2 id="current-category-name"></h2>
+            <div id="current-category-urls" class="url-tags">
+              </div>
+          </div>
+          <div class="category-actions">
+            <button id="btn-edit-category" class="btn-icon" data-i18n-title="btn_edit_tooltip">✏️</button>
+            <button id="btn-delete-category" class="btn-icon btn-danger" data-i18n-title="btn_delete_tooltip">🗑️</button>
+          </div>
+        </header>
+
+        <div class="toolbar">
+          <div class="search-box">
+            <input type="text" id="snippet-search" data-i18n-placeholder="placeholder_search">
+          </div>
+          <button id="btn-add-snippet" class="btn-success" data-i18n="btn_new_snippet"></button>
+        </div>
+
+        <div class="snippets-grid" id="snippets-container">
+          </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-category" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3 id="modal-category-title" data-i18n="modal_cat_new"></h3>
+      <div class="form-group">
+        <label for="input-cat-name" data-i18n="label_cat_name"></label>
+        <input type="text" id="input-cat-name" data-i18n-placeholder="placeholder_cat_name">
+      </div>
+      <div class="form-group">
+        <label for="input-cat-urls" data-i18n="label_cat_urls"></label>
+        <textarea id="input-cat-urls" rows="3" placeholder="*://*/*"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-cancel-category" class="btn-text" data-i18n="btn_cancel"></button>
+        <button id="btn-save-category" class="btn-primary" data-i18n="btn_save"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-snippet" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3 id="modal-snippet-title" data-i18n="modal_snip_new"></h3>
+      <div class="form-group">
+        <label for="input-snip-command" data-i18n="label_snip_command"></label>
+        <input type="text" id="input-snip-command" data-i18n-placeholder="placeholder_snip_command">
+      </div>
+      <div class="form-group">
+        <label for="input-snip-content" data-i18n="label_snip_content"></label>
+        <textarea id="input-snip-content" rows="5" data-i18n-placeholder="placeholder_snip_content"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-cancel-snippet" class="btn-text" data-i18n="btn_cancel"></button>
+        <button id="btn-save-snippet" class="btn-primary" data-i18n="btn_save"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../utils/storage.js"></script>
+  <script src="config.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "appName": { "message": "QuickSlash Snippets" },
+  "appDesc": { "message": "Gestor de snippets activado por comandos de barra (/)." },
+  "commandOpenConfig": { "message": "Abrir Configuración" },
+  "actionTitle": { "message": "Abrir Panel de Control" },
+  
+  "config_title": { "message": "Configuración - QuickSlash Snippets" },
+  "ext_enabled": { "message": "Extensión Activa" },
+  "sidebar_cat_title": { "message": "Categorías" },
+  "btn_add_cat_title": { "message": "Nueva Categoría" },
+  "btn_import": { "message": "Importar JSON" },
+  "btn_export": { "message": "Exportar Copia de Seguridad" },
+  "empty_state_text": { "message": "Seleccione una categoría para gestionar sus snippets." },
+  "placeholder_search": { "message": "Buscar snippet por comando o contenido..." },
+  "btn_new_snippet": { "message": "+ Nuevo Snippet" },
+  
+  "modal_cat_new": { "message": "Nueva Categoría" },
+  "modal_cat_edit": { "message": "Editar Categoría" },
+  "label_cat_name": { "message": "Nombre de la Categoría" },
+  "placeholder_cat_name": { "message": "Ej: Soporte Técnico" },
+  "label_cat_urls": { "message": "Patrones de URL (uno por línea, ej: *://google.com/*)" },
+  
+  "modal_snip_new": { "message": "Nuevo Snippet" },
+  "modal_snip_edit": { "message": "Editar Snippet" },
+  "label_snip_command": { "message": "Comando (sin la barra \"/\")" },
+  "placeholder_snip_command": { "message": "Ej: hola" },
+  "label_snip_content": { "message": "Contenido del Snippet" },
+  "placeholder_snip_content": { "message": "Escriba el texto que será insertado..." },
+  
+  "btn_cancel": { "message": "Cancelar" },
+  "btn_save": { "message": "Guardar" },
+  "btn_edit_tooltip": { "message": "Editar" },
+  "btn_delete_tooltip": { "message": "Eliminar" },
+
+  "confirm_delete_category": { "message": "¿Estás seguro de que deseas eliminar esta categoría y todos sus snippets?" },
+  "error_import": { "message": "Error al importar JSON. Por favor, comprueba el formato del archivo." },
+
+  "label_language": { "message": "Idioma" }
+}

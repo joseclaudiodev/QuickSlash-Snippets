@@ -1,0 +1,48 @@
+{
+  "settings": {
+    "enabled": true,
+    "openConfigHotkey": "Alt+Q"
+  },
+  "categories": [
+    {
+      "id": "cat-suporte-123",
+      "name": "Suporte Técnico",
+      "urlPatterns": ["*://*/*"],
+      "enabled": true,
+      "snippets": [
+        {
+          "id": "snip-1",
+          "command": "obs",
+          "content": "Informamos que o sinal foi normalizado após manutenção preventiva na rede externa.",
+          "enabled": true
+        },
+        {
+          "id": "snip-2",
+          "command": "laudo",
+          "content": "Análise técnica concluída: Identificada falha física no conector óptico. Substituição realizada e potência estabilizada em -19dBm.",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "cat-social-456",
+      "name": "Social e E-mail",
+      "urlPatterns": ["*://mail.google.com/*", "*://web.whatsapp.com/*"],
+      "enabled": true,
+      "snippets": [
+        {
+          "id": "snip-3",
+          "command": "att",
+          "content": "Atenciosamente,\nJosé Cláudio",
+          "enabled": true
+        },
+        {
+          "id": "snip-4",
+          "command": "obg",
+          "content": "Muito obrigado pelas informações! Ficamos à disposição para qualquer dúvida.",
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

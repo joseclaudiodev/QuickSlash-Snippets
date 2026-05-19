@@ -1,0 +1,39 @@
+{
+  "appName": { "message": "QuickSlash Snippets" },
+  "appDesc": { "message": "Gerenciador de snippets via comandos de barra (/)." },
+  "commandOpenConfig": { "message": "Abrir Configurações" },
+  "actionTitle": { "message": "Abrir Painel de Controle" },
+  
+  "config_title": { "message": "Configurações - QuickSlash Snippets" },
+  "ext_enabled": { "message": "Extensão Ativa" },
+  "sidebar_cat_title": { "message": "Categorias" },
+  "btn_add_cat_title": { "message": "Nova Categoria" },
+  "btn_import": { "message": "Importar JSON" },
+  "btn_export": { "message": "Exportar Backup" },
+  "empty_state_text": { "message": "Selecione uma categoria para gerenciar seus snippets." },
+  "placeholder_search": { "message": "Buscar snippet por comando ou conteúdo..." },
+  "btn_new_snippet": { "message": "+ Novo Snippet" },
+  
+  "modal_cat_new": { "message": "Nova Categoria" },
+  "modal_cat_edit": { "message": "Editar Categoria" },
+  "label_cat_name": { "message": "Nome da Categoria" },
+  "placeholder_cat_name": { "message": "Ex: Suporte Técnico" },
+  "label_cat_urls": { "message": "Padrões de URL (um por linha, ex: *://google.com/*)" },
+  
+  "modal_snip_new": { "message": "Novo Snippet" },
+  "modal_snip_edit": { "message": "Editar Snippet" },
+  "label_snip_command": { "message": "Comando (sem a barra \"/\")" },
+  "placeholder_snip_command": { "message": "Ex: oi" },
+  "label_snip_content": { "message": "Conteúdo do Snippet" },
+  "placeholder_snip_content": { "message": "Digite o texto que será inserido..." },
+  
+  "btn_cancel": { "message": "Cancelar" },
+  "btn_save": { "message": "Salvar" },
+  "btn_edit_tooltip": { "message": "Editar" },
+  "btn_delete_tooltip": { "message": "Excluir" },
+
+  "confirm_delete_category": { "message": "Tem certeza que deseja excluir esta categoria e todos os seus snippets?" },
+  "error_import": { "message": "Erro ao importar JSON. Verifique o formato do arquivo." },
+
+  "label_language": { "message": "Idioma" }
+}

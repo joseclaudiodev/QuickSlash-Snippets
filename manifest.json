@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "version": "1.0.0",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "author": "joseclaudiodev",
+  "permissions": [
+    "storage",
+    "tabs",
+    "commands"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "commands": {
+    "open_config": {
+      "suggested_key": {
+        "default": "Alt+Q"
+      },
+      "description": "__MSG_commandOpenConfig__"
+    }
+  },
+  "action": {
+    "default_title": "__MSG_actionTitle__"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["utils/storage.js", "content_script.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "options_page": "config/config.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
