@@ -65,8 +65,10 @@ async function injectText(el, text, commandLength) {
             cancelable: true,
             clipboardData
           });
-
-          textNode.parentNode.dispatchEvent(pasteEvent);
+          
+          if (textNode && textNode.parentNode) {
+            textNode.parentNode.dispatchEvent(pasteEvent);
+          }
         }, 80);
 
       } catch (err) {
@@ -95,18 +97,22 @@ window.addEventListener('keydown', (e) => {
   clearTimeout(timeoutId);
   timeoutId = setTimeout(() => {keyBuffer = "";}, 3000);
 
-  const match = keyBuffer.match(/\/(\w+)$/);
+  const match = keyBuffer.match(/\/(\w{2,})$/);
   if (match) {
     const typedCommand = match[1];
     const snippet = activeSnippets.find(s => s.command === typedCommand);
 
-    if (snippet && snippet.enabled) {
-      e.preventDefault();
-      
+    if (snippet && snippet.enabled) {   
       const totalCommandLength = typedCommand.length + 1;
       keyBuffer = "";
 
-      injectText(active, snippet.content, totalCommandLength);
+      clearTimeout(timeoutId);
+
+      setTimeout(() => {
+        injectText(active, snippet.content, totalCommandLength);
+      }, 10);
+
+      return;
     }
   }
 }, true);
