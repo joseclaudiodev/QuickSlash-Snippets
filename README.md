@@ -7,6 +7,9 @@
 
 **QuickSlash Snippets** is a Google Chrome extension (Manifest V3) that enables rapid text substitution using slash (`/`) commands.
 
+### Demonstration
+<img width="600" alt="demo" src="https://github.com/user-attachments/assets/81c631e1-e3d5-44b7-bf3a-b452f02c3a12" />
+
 ### Features
 * **Command Substitution:** Automatically detects commands starting with `/` in text fields (`input`, `textarea`, `contenteditable`, etc.).
 * **URL Categorization:** Organizes snippets into categories, allowing you to define which domains each set of shortcuts should be active on using URL patterns (wildcards).
@@ -32,6 +35,9 @@
 
 O **QuickSlash Snippets** é uma extensão para Google Chrome (Manifest V3) que permite a substituição rápida de atalhos de texto via comandos de barra (`/`).
 
+### Demonstração
+<img width="600" alt="demo" src="https://github.com/user-attachments/assets/81c631e1-e3d5-44b7-bf3a-b452f02c3a12" />
+
 ### Funcionalidades
 * **Substituição de Comandos:** Detecta automaticamente comandos iniciados por `/` em campos de texto (`input`, `textarea`, `contenteditable`, etc.).
 * **Categorização por URL:** Organiza snippets em categorias, permitindo definir em quais domínios cada conjunto de atalhos deve ser ativado através de padrões de URL (wildcards).
@@ -45,7 +51,7 @@ O **QuickSlash Snippets** é uma extensão para Google Chrome (Manifest V3) que 
 4. Clique em **Carregar sem compactação** e selecione a pasta do projeto.
 
 ### Uso
-1. Pressione `Alt+Q` (ou clique no ícone da extensão) para abrir o painel de configurações.
+1. Pressione `Alt+Q` (or clique no ícone da extensão) para abrir o painel de configurações.
 2. Adicione uma **Categoria** e defina seus **Padrões de URL** (ex: `*://*.google.com/*`).
 3. Adicione **Snippets** à categoria, definindo um comando (ex: `oi`) e o texto de saída.
 4. No campo de texto do site alvo, digite `/` seguido do comando (ex: `/oi`) para realizar a substituição.
