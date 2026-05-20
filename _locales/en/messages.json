@@ -3,7 +3,7 @@
   "appDesc": { "message": "Snippet manager triggered by slash commands (/)." },
   "commandOpenConfig": { "message": "Open Settings" },
   "actionTitle": { "message": "Open Dashboard" },
-  
+
   "config_title": { "message": "Settings - QuickSlash Snippets" },
   "ext_enabled": { "message": "Extension Enabled" },
   "sidebar_cat_title": { "message": "Categories" },
@@ -13,20 +13,20 @@
   "empty_state_text": { "message": "Select a category to manage your snippets." },
   "placeholder_search": { "message": "Search snippets by command or content..." },
   "btn_new_snippet": { "message": "+ New Snippet" },
-  
+
   "modal_cat_new": { "message": "New Category" },
   "modal_cat_edit": { "message": "Edit Category" },
   "label_cat_name": { "message": "Category Name" },
   "placeholder_cat_name": { "message": "Ex: Technical Support" },
   "label_cat_urls": { "message": "URL Patterns (one per line, ex: *://google.com/*)" },
-  
+
   "modal_snip_new": { "message": "New Snippet" },
   "modal_snip_edit": { "message": "Edit Snippet" },
   "label_snip_command": { "message": "Command (without \"/\")" },
   "placeholder_snip_command": { "message": "Ex: hello" },
   "label_snip_content": { "message": "Snippet Content" },
   "placeholder_snip_content": { "message": "Type the text to be inserted..." },
-  
+
   "btn_cancel": { "message": "Cancel" },
   "btn_save": { "message": "Save" },
   "btn_edit_tooltip": { "message": "Edit" },
@@ -35,5 +35,10 @@
   "confirm_delete_category": { "message": "Are you sure you want to delete this category and all its snippets?" },
   "error_import": { "message": "Error importing JSON. Please check the file format." },
 
- "label_language": { "message": "Language" }
+  "label_language": { "message": "Language" },
+
+  "import_modal_title": { "message": "Import Settings" },
+  "import_modal_desc": { "message": "Do you want to keep the current settings and add the new ones, or would you prefer to erase everything and replace them completely?" },
+  "btn_import_replace": { "message": "Replace All" },
+  "btn_import_merge": { "message": "Keep and Add" }
 }
