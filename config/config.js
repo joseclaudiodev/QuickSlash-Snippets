@@ -263,14 +263,107 @@ function importBackup(e) {
   reader.onload = async (event) => {
     try {
       const importedData = JSON.parse(event.target.result);
+      
       if (importedData.categories) {
-        appData = importedData;
-        await saveData();
-        location.reload();
+        const modalImport = document.getElementById('modal-import-choice');
+        modalImport.classList.remove('hidden');
+
+        document.getElementById('import-file-input').value = "";
+
+        const btnCancel = document.getElementById('btn-import-cancel');
+        const btnReplace = document.getElementById('btn-import-replace');
+        const btnMerge = document.getElementById('btn-import-merge');
+
+        btnCancel.onclick = () => modalImport.classList.add('hidden');
+
+        btnReplace.onclick = async () => {
+          appData = importedData;
+          await saveData();
+          location.reload();
+        };
+
+        btnMerge.onclick = async () => {
+          importedData.categories.forEach(importedCat => {
+            const existingCat = appData.categories.find(c => c.name === importedCat.name);
+
+            if (existingCat) {
+              if (importedCat.snippets && Array.isArray(importedCat.snippets)) {
+                importedCat.snippets.forEach(importedSnip => {
+                  let targetCommand = importedSnip.command;
+                  let counter = 2;
+
+                  while (existingCat.snippets.some(s => s.command === targetCommand)) {
+                    const conflictSnip = existingCat.snippets.find(s => s.command === targetCommand);
+                    if (conflictSnip) {
+                      if (conflictSnip.content === importedSnip.content) {
+                        targetCommand = null;
+                        break;
+                      } else {
+                        targetCommand = importedSnip.command + counter;
+                        counter++;
+                      }
+                    } else break;
+                  }
+
+                  if (targetCommand) {
+                    existingCat.snippets.push({
+                      id: 'snip_' + Date.now() + Math.random().toString(36).substr(2, 5),
+                      command: targetCommand,
+                      content: importedSnip.content,
+                      enabled: importedSnip.enabled !== undefined ? importedSnip.enabled : true
+                    });
+                  }
+                });
+              }
+            } else {
+              const newCat = {
+                id: 'cat_' + Date.now() + Math.random().toString(36).substr(2, 5),
+                name: importedCat.name,
+                enabled: importedCat.enabled !== undefined ? importedCat.enabled : true,
+                urlPatterns: importedCat.urlPatterns || [],
+                snippets: []
+              };
+
+              if (importedCat.snippets && Array.isArray(importedCat.snippets)) {
+                importedCat.snippets.forEach(importedSnip => {
+                  let targetCommand = importedSnip.command;
+                  let counter = 2;
+
+                  while (newCat.snippets.some(s => s.command === targetCommand)) {
+                    const conflictSnip = newCat.snippets.find(s => s.command === targetCommand);
+                    if (conflictSnip) {
+                      if (conflictSnip.content === importedSnip.content) {
+                        targetCommand = null;
+                        break;
+                      } else {
+                        targetCommand = importedSnip.command + counter;
+                        counter++;
+                      }
+                    } else break;
+                  }
+
+                  if (targetCommand) {
+                    newCat.snippets.push({
+                      id: 'snip_' + Date.now() + Math.random().toString(36).substr(2, 5),
+                      command: targetCommand,
+                      content: importedSnip.content,
+                      enabled: importedSnip.enabled !== undefined ? importedSnip.enabled : true
+                    });
+                  }
+                });
+              }
+              appData.categories.push(newCat);
+            }
+          });
+
+          await saveData();
+          location.reload();
+        };
       }
     } catch (err) {
-      alert(chrome.i18n.getMessage('error_import'));
+      location.reload();
     }
   };
+  
   reader.readAsText(file);
 }
