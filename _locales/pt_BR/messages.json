@@ -35,5 +35,10 @@
   "confirm_delete_category": { "message": "Tem certeza que deseja excluir esta categoria e todos os seus snippets?" },
   "error_import": { "message": "Erro ao importar JSON. Verifique o formato do arquivo." },
 
-  "label_language": { "message": "Idioma" }
+  "label_language": { "message": "Idioma" },
+
+  "import_modal_title": { "message": "Importar Configurações" },
+  "import_modal_desc": { "message": "Você deseja manter as configurações atuais e adicionar as novas, ou prefere apagar tudo e substituir completamente?" },
+  "btn_import_replace": { "message": "Substituir Tudo" },
+  "btn_import_merge": { "message": "Manter e Adicionar" }
 }
