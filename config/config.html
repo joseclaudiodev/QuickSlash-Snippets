@@ -107,6 +107,20 @@
     </div>
   </div>
 
+<div id="modal-import-choice" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3 data-i18n="import_modal_title"></h3>
+      <p data-i18n="import_modal_desc" style="margin: 15px 0; color: var(--text-main); line-height: 1.5; font-size: 0.95rem;"></p>
+      <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 24px;">
+        <button id="btn-import-cancel" class="btn-text" data-i18n="btn_cancel"></button>
+        <div style="display: flex; gap: 10px;">
+          <button id="btn-import-replace" class="btn-danger" data-i18n="btn_import_replace"></button>
+          <button id="btn-import-merge" class="btn-primary" data-i18n="btn_import_merge" style="font-weight: 700; border: 2px solid var(--primary-color);"></button>
+        </div>        
+      </div>
+    </div>
+  </div>
+
   <script src="../utils/storage.js"></script>
   <script src="config.js"></script>
 </body>
