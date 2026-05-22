@@ -11,7 +11,6 @@ async function loadSnippets() {
 
 function simulateKeyCombo(element, key, ctrlOrCmd = true) {
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-  
   const eventConfig = {
     key: key,
     code: key === 'Backspace' ? 'Backspace' : `Key${key.toUpperCase()}`,
@@ -26,22 +25,62 @@ function simulateKeyCombo(element, key, ctrlOrCmd = true) {
   element.dispatchEvent(new KeyboardEvent('keyup', eventConfig));
 }
 
-/**
- * @param {HTMLElement} el
- * @param {string} text
- * @param {number} commandLength
- */
-async function injectText(el, text, commandLength) {
-  const isNative = el.tagName === 'INPUT' || el.tagName === 'TEXTAREA';
-  
-  if (isNative) {
-    el.focus();
-    const currentPos = el.selectionStart;
-    el.setSelectionRange(Math.max(0, currentPos - commandLength), currentPos);
-    document.execCommand('insertText', false, text);
-  } else {
+function injectIntoNative(el, text, commandLength) {
+  el.focus();
+  const currentPos = el.selectionStart;
+  el.setSelectionRange(Math.max(0, currentPos - commandLength), currentPos);
+  document.execCommand('insertText', false, text);
+}
+
+function executeDOMFallback(el, text, commandLength) {
+  try {
+    const fallbackSelection = window.getSelection();
+    if (fallbackSelection && fallbackSelection.rangeCount > 0) {
+      const fallbackRange = fallbackSelection.getRangeAt(0);
+      
+      fallbackRange.collapse(false);
+      
+      let fTextNode = fallbackRange.startContainer;
+      if (fTextNode.nodeType !== Node.TEXT_NODE) {
+        const emptyNode = document.createTextNode("");
+        fallbackRange.insertNode(emptyNode);
+        fTextNode = emptyNode;
+      }
+
+      const fCurrentOffset = fallbackRange.startOffset;
+      const startPos = Math.max(0, fCurrentOffset - commandLength);
+
+      fallbackRange.setStart(fTextNode, startPos);
+      fallbackRange.setEnd(fTextNode, fCurrentOffset);
+      fallbackRange.deleteContents();
+
+      const newNode = document.createTextNode(text);
+      fallbackRange.insertNode(newNode);
+      
+      fallbackRange.setStartAfter(newNode);
+      fallbackRange.collapse(true);
+      fallbackSelection.removeAllRanges();
+      fallbackSelection.addRange(fallbackRange);
+
+      el.dispatchEvent(new InputEvent('input', {
+        bubbles: true,
+        cancelable: true,
+        inputType: 'insertText',
+        data: text
+      }));
+      
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  } catch (fallbackErr) {
+    const errSel = window.getSelection();
+    if (errSel) errSel.removeAllRanges();
+  }
+}
+
+function injectIntoContentEditable(el, text, commandLength) {
+  return new Promise((resolve) => {
     const selection = window.getSelection();
-    if (!selection || !selection.rangeCount) return;
+    if (!selection || !selection.rangeCount) return resolve();
     const range = selection.getRangeAt(0);
     const textNode = selection.focusNode;
 
@@ -69,16 +108,28 @@ async function injectText(el, text, commandLength) {
           if (textNode && textNode.parentNode) {
             textNode.parentNode.dispatchEvent(pasteEvent);
           }
+
+          if (!el.textContent.includes(text)) executeDOMFallback(el, text, commandLength);
+          resolve();
         }, 80);
 
       } catch (err) {
         selection.removeAllRanges();
+        resolve();
       }
     } else {
       const targetElement = el.children[0] || el;
       targetElement.textContent = text;
+      resolve();
     }
-  }
+  });
+}
+
+async function injectText(el, text, commandLength) {
+  const isNative = el.tagName === 'INPUT' || el.tagName === 'TEXTAREA';
+  
+  if (isNative) injectIntoNative(el, text, commandLength);
+  else await injectIntoContentEditable(el, text, commandLength);
 }
 
 window.addEventListener('keydown', (e) => {
@@ -95,7 +146,7 @@ window.addEventListener('keydown', (e) => {
   else if (keyBuffer.length > 0) keyBuffer += e.key;
 
   clearTimeout(timeoutId);
-  timeoutId = setTimeout(() => {keyBuffer = "";}, 3000);
+  timeoutId = setTimeout(() => { keyBuffer = ""; }, 3000);
 
   const match = keyBuffer.match(/\/(\w{2,})$/);
   if (match) {

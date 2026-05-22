@@ -110,8 +110,8 @@ function renderSnippets() {
       <header>
         <span class="snippet-command">/${snip.command}</span>
         <div class="card-actions">
-          <button class="btn-icon edit-snip" title="${chrome.i18n.getMessage('btn_edit_tooltip')}">✏️</button>
-          <button class="btn-icon btn-danger delete-snip" title="${chrome.i18n.getMessage('btn_delete_tooltip')}">🗑️</button>
+          <button class="btn-icon edit-snip" title="${chrome.i18n.getMessage('btn_edit_tooltip')}"><img class="fa-icon" src="/icons/pen-to-square-solid-full.svg"></button>
+          <button class="btn-icon btn-danger delete-snip" title="${chrome.i18n.getMessage('btn_delete_tooltip')}"><img class="fa-icon inverted" src="/icons/trash-solid-full.svg"></button>
         </div>
       </header>
       <div class="snippet-content"></div>
