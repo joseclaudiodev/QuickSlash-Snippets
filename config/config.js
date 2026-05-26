@@ -60,8 +60,8 @@ function renderCategories() {
 	categoryList.innerHTML = '';
 	appData.categories.forEach(cat => {
 		const btn = document.createElement('button');
-		btn.className = `category-item ${selectedCategoryId === cat.id ? 'active' : ''}`;
-		btn.innerHTML = `<span>${cat.name}</span>`;
+		btn.className = `category-item ${escapeHTML(selectedCategoryId === cat.id ? 'active' : '')}`;
+		btn.innerHTML = `<span>${escapeHTML(cat.name)}</span>`;
 		btn.onclick = () => selectCategory(cat.id);
 		categoryList.appendChild(btn);
 	});
@@ -121,7 +121,7 @@ function renderSnippets() {
 		card.className = 'snippet-card';
 		card.innerHTML = `
       <header>
-        <span class="snippet-command" title="/${snip.command}">/${snip.command}</span>
+        <span class="snippet-command" title="/${escapeHTML(snip.command)}">/${escapeHTML(snip.command)}</span>
         <div class="card-actions">
           <button class="btn-icon edit-snip" title="${chrome.i18n.getMessage('btn_edit_tooltip')}"><img class="fa-icon" src="/icons/pen-to-square-solid-full.svg"></button>
           <button class="btn-icon btn-danger delete-snip" title="${chrome.i18n.getMessage('btn_delete_tooltip')}"><img class="fa-icon inverted" src="/icons/trash-solid-full.svg"></button>
@@ -389,4 +389,18 @@ function importBackup(e) {
 	};
 
 	reader.readAsText(file);
+}
+
+function escapeHTML(str) {
+	if (!str) return '';
+	return str.replace(/[&<>"']/g, function (match) {
+		const escapeMap = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#x27;'
+		};
+		return escapeMap[match];
+	});
 }
